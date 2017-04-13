@@ -75,3 +75,31 @@
     cpu_temp_path:  /sys/devices/virtual/thermal/thermal_zone1/temp
     theme: portrait_hdpi
 
+- name: Infinix Hot 3
+  id: Infinix_X553
+  codenames:
+    - X553
+    - x553
+    - Infinix_X553
+    - X553_Infinix
+  architecture: arm64-v8a
+
+  block_devs:
+    base_dirs:
+      - /dev/block/platform/7824900.sdhci/by-name
+    system:
+      - /dev/block/platform/7824900.sdhci/by-name/system
+      - /dev/block/mmcblk0p23
+    cache:
+      - /dev/block/platform/7824900.sdhci/by-name/cache
+      - /dev/block/mmcblk0p25
+    data:
+      - /dev/block/platform/7824900.sdhci/by-name/userdata
+      - /dev/block/mmcblk0p31
+    boot:
+      - /dev/block/platform/7824900.sdhci/by-name/boot
+      - /dev/block/mmcblk0p22
+    recovery:
+      - /dev/block/platform/7824900.sdhci/by-name/recovery
+      - /dev/block/mmcblk0p26
+
