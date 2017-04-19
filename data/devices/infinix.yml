@@ -80,6 +80,7 @@
   codenames:
     - X554
     - Infinix_X554
+    - Infinix-X554
     - x554
   architecture: armeabi-v7a
 
@@ -111,7 +112,7 @@
     cpu_temp_path:  /sys/devices/virtual/thermal/thermal_zone1/temp
     theme: portrait_hdpi
 
-- name: Infinix Hot 3 X553
+- name: Infinix Hot 3 LTE X553
   id: Infinix_X553
   codenames:
     - X553
