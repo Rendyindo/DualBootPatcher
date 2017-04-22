@@ -119,6 +119,7 @@
     - x553
     - Infinix_X553
     - X553_Infinix
+    - INFINIX-X553-A1
   architecture: arm64-v8a
 
   block_devs:
