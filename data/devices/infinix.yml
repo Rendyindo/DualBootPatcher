@@ -120,6 +120,8 @@
     - Infinix_X553
     - X553_Infinix
     - INFINIX-X553-A1
+    - Hot 3
+    - Infinix Hot 3
   architecture: arm64-v8a
 
   block_devs:
