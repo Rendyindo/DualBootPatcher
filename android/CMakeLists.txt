@@ -67,7 +67,7 @@ if(MBP_TOP_LEVEL_BUILD)
             ${INTERNAL_COMMON_OPTIONS}
             -DCMAKE_BUILD_TYPE=${MBP_SYSTEM_CMAKE_BUILD_TYPE}
             -DANDROID_PIE=OFF
-            -DANDROID_PLATFORM=android-24
+            -DANDROID_PLATFORM=android-21
             -DMBP_BUILD_TARGET=android-system
         )
 

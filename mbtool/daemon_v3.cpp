@@ -1,20 +1,20 @@
 /*
  * Copyright (C) 2014-2016  Andrew Gunnerson <andrewgunnerson@gmail.com>
  *
- * This file is part of MultiBootPatcher
+ * This file is part of DualBootPatcher
  *
- * MultiBootPatcher is free software: you can redistribute it and/or modify
+ * DualBootPatcher is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * MultiBootPatcher is distributed in the hope that it will be useful,
+ * DualBootPatcher is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MultiBootPatcher.  If not, see <http://www.gnu.org/licenses/>.
+ * along with DualBootPatcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "daemon_v3.h"
@@ -387,19 +387,19 @@ static bool v3_file_stat(int fd, const v3::Request *msg)
 
     if (ret) {
         v3::StructStatBuilder ssb(builder);
-        ssb.add_st_dev(sb.st_dev);
-        ssb.add_st_ino(sb.st_ino);
-        ssb.add_st_mode(sb.st_mode);
-        ssb.add_st_nlink(sb.st_nlink);
-        ssb.add_st_uid(sb.st_uid);
-        ssb.add_st_gid(sb.st_gid);
-        ssb.add_st_rdev(sb.st_rdev);
-        ssb.add_st_size(sb.st_size);
-        ssb.add_st_blksize(sb.st_blksize);
-        ssb.add_st_blocks(sb.st_blocks);
-        ssb.add_st_atime(sb.st_atime);
-        ssb.add_st_mtime(sb.st_mtime);
-        ssb.add_st_ctime(sb.st_ctime);
+        ssb.add_dev(sb.st_dev);
+        ssb.add_ino(sb.st_ino);
+        ssb.add_mode(sb.st_mode);
+        ssb.add_nlink(sb.st_nlink);
+        ssb.add_uid(sb.st_uid);
+        ssb.add_gid(sb.st_gid);
+        ssb.add_rdev(sb.st_rdev);
+        ssb.add_size(sb.st_size);
+        ssb.add_blksize(sb.st_blksize);
+        ssb.add_blocks(sb.st_blocks);
+        ssb.add_atime(sb.st_atime);
+        ssb.add_mtime(sb.st_mtime);
+        ssb.add_ctime(sb.st_ctime);
         statbuf = ssb.Finish();
     } else {
         error = v3::CreateFileStatErrorDirect(

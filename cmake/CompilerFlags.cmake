@@ -11,11 +11,18 @@ if(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 
     if(ANDROID)
         add_compile_options(-fno-exceptions -fno-rtti)
+
+        # -Wunknown-attributes - malloc.h
+        # -Wzero-length-array - asm-generic/siginfo.h
+        add_compile_options(-Wno-unknown-attributes -Wno-zero-length-array)
     endif()
 
     if(NOT WIN32)
         # Visibility
         add_compile_options(-fvisibility=hidden)
+
+        # Use DT_RPATH instead of DT_RUNPATH because the latter is not transitive
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--disable-new-dtags")
 
         # Does not work on Windows:
         # https://sourceware.org/bugzilla/show_bug.cgi?id=11539
