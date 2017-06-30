@@ -1,20 +1,20 @@
 /*
  * Copyright (C) 2015  Andrew Gunnerson <andrewgunnerson@gmail.com>
  *
- * This file is part of MultiBootPatcher
+ * This file is part of DualBootPatcher
  *
- * MultiBootPatcher is free software: you can redistribute it and/or modify
+ * DualBootPatcher is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * MultiBootPatcher is distributed in the hope that it will be useful,
+ * DualBootPatcher is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with MultiBootPatcher.  If not, see <http://www.gnu.org/licenses/>.
+ * along with DualBootPatcher.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "mbpio/directory.h"
@@ -79,8 +79,18 @@ bool createDirectories(const std::string &path)
 
 #if IO_PLATFORM_WINDOWS
         wTemp = mb::utf8_to_wcs(temp.data());
-        if (!wTemp || (!CreateDirectoryW(wTemp, nullptr)
-                && GetLastError() != ERROR_ALREADY_EXISTS)) {
+        if (!wTemp) {
+            setLastError(Error::PlatformError, priv::format(
+                    "%s: Failed to convert UTF-16 to UTF-8: %s",
+                    temp.data(), win32::errorToString(GetLastError()).c_str()));
+            return false;
+        }
+
+        DWORD dwAttrib = GetFileAttributesW(wTemp);
+        bool exists = (dwAttrib != INVALID_FILE_ATTRIBUTES)
+                && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY);
+        if (!exists && !CreateDirectoryW(wTemp, nullptr)
+                && GetLastError() != ERROR_ALREADY_EXISTS) {
             free(wTemp);
             setLastError(Error::PlatformError, priv::format(
                     "%s: Failed to create directory: %s",
